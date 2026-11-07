@@ -1,0 +1,13 @@
+#!name=X App 时间线去广告
+#!desc=尝试移除 iOS 官方 X App 首页「为你推荐」和「正在关注」中的推广推文。需要 MITM；如 App 无法联网请停用。不保证全部版本生效。
+#!system=ios
+#!category=去广告
+#!author=ChatGPT
+#!version=1.1.0
+#!date=2026-11-08
+
+[Script]
+X-App-Feed-NoAds = type=http-response,pattern=^https:\/\/(?:x\.com|twitter\.com|api\.x\.com|api\.twitter\.com)\/(?:(?:i\/api\/)?graphql\/[^\/?#]+\/(?:HomeTimeline|HomeLatestTimeline|FollowingTimeline|HomeSubtab|HomeFollowingTimeline)(?:[?#]|$)|(?:i\/api\/)?2\/timeline\/(?:home|home_latest|home_following)\.json(?:[?#]|$)),requires-body=true,max-size=4194304,timeout=10,script-path=https://raw.githubusercontent.com/DlamondEyes/Surge-/main/Modules/X-Timeline-NoAds.js
+
+[MITM]
+hostname = %APPEND% x.com, twitter.com, api.x.com, api.twitter.com
